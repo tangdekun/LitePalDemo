@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSqLiteDatabase = LitePal.getDatabase();
-
+//        insertData();
 //        Album albumToUpdate = DataSupport.find(Album.class, 2);
 //        albumToUpdate.setPrice(20.99f); // raise the price
 //        albumToUpdate.save();
@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     public void insertData(){
         Album album = new Album();
         album.setName("周杰伦专辑");
-        album.setPrice(100.6f);
+        album.setPrice(100.6F);
         album.save();
         Album album1 = new Album();
         album1.setName("莫文蔚专辑");
-        album1.setPrice(100.6f);
+        album1.setPrice(100.6F);
         album1.save();
 
         Song song = new Song();
@@ -66,5 +66,19 @@ public class MainActivity extends AppCompatActivity {
         Album album = DataSupport.find(Album.class,1);
         album.setName("王菲专辑");
         album.save();
+        //2.先New一个对象，然后通过update更新指定id的数据
+        Album album1 = new Album();
+        album1.setName("刘亦菲专辑");
+        album1.setPrice(1222F);
+        album1.update(1);
+
+
+        //3.通过条件更新数据
+        Album album2 = new Album();
+        album2.setName("TFBoys 专辑");
+        album2.setPrice(10000F);
+        album2.updateAll("price < ?","0");
+
+
     }
 }
